@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<style>
+input[type=button] 
+{ font-size:32px;
+  background-color:red;
+  color:yellow;
+  text-align:center;
+  cursor:pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+input[type=button]:hover
+{ background-color: black;}
+</style>
+</head>
+
+<body style="background-color:orange;text-align:center;">
+
+<h1 style="font-family:verdana;">Simple Calculator !!</h1>
+<br>
+
+<form Name="calc">  <!--form collects user input from through buttons-->
+
+<table style="margin-left:515px;background-color:green;border:2px solid black;">
+<tr>
+<input style="background-color:black;color:white;font-size:40px;width:23.5%" type=text Name="input">
+</tr>
+<tr>
+<td><input type=button value="cos" OnClick="calc.input.value=Math.cos(0.0174*eval(calc.input.value));"></td>
+<td><input type=button value="7" OnClick="calc.input.value+='7'"></td>
+<td><input type=button value="8" OnClick="calc.input.value+='8'"></td>
+<td><input type=button value="9" OnClick="calc.input.value+='9'"></td>
+<td><input style="width:40px;" type=button value="/" OnClick="calc.input.value+='/'"></td>
+<td><input type=button value="x2" OnClick="calc.input.value=eval(calc.input.value*calc.input.value)"></td>
+</tr>
+<tr>
+<td><input type=button value="sin" OnClick="calc.input.value=Math.sin(0.0174*eval(calc.input.value));"></td>
+<td><input type=button value="4" OnClick="calc.input.value+='4'"></td>
+<td><input type=button value="5" OnClick="calc.input.value+='5'"></td>
+<td><input type=button value="6" OnClick="calc.input.value+='6'"></td>
+<td><input style="width:40px;" type=button value="*" OnClick="calc.input.value+='*'"></td>
+<td><input type=button value="log" OnClick="calc.input.value=Math.log(eval(calc.input.value));"></td>
+</tr>
+<tr>
+<td><input type=button value="tan" OnClick="calc.input.value=Math.tan(0.0174*eval(calc.input.value));"></td>
+<td><input type=button value="1" OnClick="calc.input.value+='1'"></td>
+<td><input type=button value="2" OnClick="calc.input.value+='2'"></td>
+<td><input type=button value="3" OnClick="calc.input.value+='3'"></td>
+<td><input style="width:40px;" type=button value="-" OnClick="calc.input.value+='-'"></td>
+<td><input type=button value="root" OnClick="calc.input.value=Math.sqrt(eval(calc.input.value));"></td>
+</tr>
+<tr>
+<td><input style="width:55px;" type=button value="0" OnClick="calc.input.value+='0'"></td>
+<td><input style="width:40px;" type=button value="." OnClick="calc.input.value+='.'"></td>
+<td><input style="background-color:blue;" type=button value="=" OnClick="calc.input.value=eval(calc.input.value)"></td>
+<td><input style="width:40px;" type=button value="+" OnClick="calc.input.value+='+'"></td>
+<td><input style="background-color:blue;" type=button value="C" OnClick="calc.input.value=''"></td>
+<td><input type=button value="x3" OnClick="calc.input.value=eval(calc.input.value*calc.input.value*calc.input.value)"></td>
+         <!--eval method is used to evaluate the string in the value attribute of input element-->
+</tr>
+</table>
+</form>
+</div>
+</body>
+</html>
