@@ -6,7 +6,7 @@ app.use(bodyParser.json());
 
 mongoose.connect("mongodb://localhost/database");
 
-var todoschema = new mongoose.schema ({
+var todoschema = new mongoose.Schema ({
  name : {type: String, required: true}
  });
 
@@ -34,7 +34,7 @@ app.delete('/todolist/:id', function (req, res) {
 
 app.get('/todolist/:id', function (req, res) {
   
-  todomodel.findById({req.params.id, function (err, task) {
+  todomodel.findById(req.params.id, function (err, task) {
     res.json(task);
   });
 });
