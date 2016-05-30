@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="App">
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
+<script src="frontend.js"></script>
+
+<style>
+#list   
+{ margin-left:320px;
+  font-size: 40px;
+  font-family:verdana;
+}
+button     
+{ color:yellow;background-color:red;text-align:center;cursor:pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  font-size:40px;
+  padding: 14px 32px;
+}
+button:hover
+{ background-color:peachpuff;
+  color:tomato;
+}
+</style>
+</head>
+
+<body style="background-color:cyan;">
+
+<div ng-controller="Ctrl">
+
+<h1 style="text-align:center;font-family:verdana;">To-Do LiSt</h1>
+
+<div style="margin-left:300px">
+<input type="text" ng-model="task.name" style="background-color:black;color:white;font-size:40px;width:40%">
+<button ng-click="addtask()">Add</button>&nbsp;
+<button ng-click="updatetask()">Update</button>&nbsp;<button ng-click="clearfield()">Clear</button>
+</div>
+
+<ul>
+<li id="list" ng-repeat="task in todolist">
+{{task.name}}
+<button ng-click="deletetask(task._id)">Delete</button>&nbsp;&nbsp;<button ng-click="edittask(task._id)">Edit</button>
+</tr>
+</table>
+
+</div>
+
+
+</body>
+</html>
