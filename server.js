@@ -3,7 +3,6 @@ var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-app.use(express.static(__dirname));
 
 mongoose.connect("mongodb://localhost/database");
 
@@ -15,7 +14,7 @@ var todoschema = new mongoose.Schema ({
 var todomodel = mongoose.model('todolist',todoschema);
 
 app.get('/',function(req,res){
-   res.sendFile('\todo.html');
+   res.sendFile('C:\Users\Rohit\Desktop\New folder\todo.html');
 })
 
 app.get('/todolist', function (req, res){
