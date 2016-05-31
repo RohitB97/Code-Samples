@@ -14,7 +14,7 @@ var TodoModel = mongoose.model('todolist',TodoSchema);
 
 app.get('/',function(req,res){
 
-    res.sendFile('C:\\Users\\Rohit\\Desktop\\New folder\\files\\todo.html');  
+res.sendFile('C:\\Users\\Rohit\\Desktop\\New folder\\files\\todo.html');  //Use \\merge.html in place of \\todo.html while testing because browsers block access to local resources 
 })
 
 app.get('/todolist', function (req, res){
