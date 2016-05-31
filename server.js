@@ -4,53 +4,53 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost/database");
+mongoose.connect("mongodb://localhost/test");
 
-var todoschema = new mongoose.Schema ({
+var TodoSchema = new mongoose.Schema ({
  name : {type: String, required: true}
  });
- 
 
-var todomodel = mongoose.model('todolist',todoschema);
+var TodoModel = mongoose.model('todolist',TodoSchema);
 
 app.get('/',function(req,res){
-   res.sendFile('C:/Users/Rohit/Desktop/New folder/todo.html');
+
+    res.sendFile('C:\\Users\\Rohit\\Desktop\\New folder\\files\\todo.html');  
 })
 
 app.get('/todolist', function (req, res){
-    todomodel.find(function(err,tasks){
+    TodoModel.find(function(err,tasks){
       res.json(tasks);
      });
 });
 
 app.post('/todolist', function (req, res) {
-  
-  todomodel.insert(req.body, function(err, task) {
+
+  TodoModel.create({name:req.body.name},function(err,task){
     res.json(task);
   });
+   
 });
 
 app.delete('/todolist/:id', function (req, res) {
   
- todomodel.remove(req.params.id, function (err, task) {
-    res.json(task);
-  });
+ TodoModel.remove({_id:req.params.id}, function (err) {
+     res.send('');
+ });
 });
 
 app.get('/todolist/:id', function (req, res) {
   
-  todomodel.findById(req.params.id, function (err, task) {
+  TodoModel.findById(req.params.id, function (err, task){
     res.json(task);
   });
 });
 
 app.put('/todolist/:id', function (req, res) {
   
-  todomodel.findAndModify({
-     query: req.params.id,
-     update: {$set: {name: req.body.name}},
-     new: true}, function (err, task) {
-      
+  TodoModel.findByIdAndUpdate(req.params.id,
+     {name: req.body.name},
+      function (err, task) {
+    
       res.json(task);
     }
   );
