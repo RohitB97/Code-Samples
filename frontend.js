@@ -16,7 +16,7 @@ $scope.addtask = function() {
     });
  };
 
-$scope.deletetask = function() {
+$scope.deletetask = function(id) {
   $http.delete('/todolist/'+ id).success(function(response){
       reset();
       });
@@ -28,7 +28,7 @@ $scope.edittask = function(id) {
      });
    };
 
-$scope.updatetask = function(id){
+$scope.updatetask = function(){
    $http.put('/todolist/'+$scope.task._id, $scope.task).success(function(response){
        reset();
     });
