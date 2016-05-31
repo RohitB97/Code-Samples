@@ -11,7 +11,7 @@ App.controller('Ctrl',['$scope','$http',function($scope,$http) {
   reset();
 
 $scope.addtask = function() {
-  $http.post('/todolist'.$scope.task).success(function(response) {
+  $http.post('/todolist', $scope.task).success(function(response) {
        reset();
     });
  };
