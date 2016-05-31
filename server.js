@@ -14,7 +14,7 @@ var todoschema = new mongoose.Schema ({
 var todomodel = mongoose.model('todolist',todoschema);
 
 app.get('/',function(req,res){
-   res.sendFile('C:\Users\Rohit\Desktop\New folder\todo.html');
+   res.sendFile('C:/Users/Rohit/Desktop/New folder/todo.html');
 })
 
 app.get('/todolist', function (req, res){
