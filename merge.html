@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="App">
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script >
+	var App = angular.module('App',[]);
+App.controller('Ctrl',['$scope','$http',function($scope,$http) {
+         
+    var reset = function(){
+      $http.get('/todolist').success(function(response){
+        $scope.todolist=response;
+        $scope.task="";
+        });
+     };
+
+  reset();
+
+$scope.addtask = function() {
+  
+  $http.post('/todolist', $scope.task).success(function(response) {
+        console.log("added");
+       reset();
+    });
+ };
+
+$scope.deletetask = function(id) {
+  $http.delete('/todolist/'+ id).success(function(response){
+      reset();
+      });
+   };
+ 
+$scope.edittask = function(id) {
+   $http.get('/todolist/'+ id).success(function(response){
+       $scope.task=response;
+     });
+   };
+
+$scope.updatetask = function(){
+   $http.put('/todolist/'+$scope.task._id, $scope.task).success(function(response){
+       reset();
+    });
+ };
+
+$scope.clearfield = function(){
+   $scope.task="";
+}
+
+}]);
+
+
+</script>
+
+<style>
+#list   
+{ margin-left:320px;
+  font-size: 40px;
+  font-family:verdana;
+}
+button     
+{ color:yellow;background-color:red;text-align:center;cursor:pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  font-size:40px;
+  padding: 14px 32px;
+}
+button:hover
+{ background-color:peachpuff;
+  color:tomato;
+}
+</style>
+</head>
+
+<body style="background-color:cyan;">
+
+<div ng-controller="Ctrl">
+
+<h1 style="text-align:center;font-family:verdana;">To-Do LiSt</h1>
+
+<div style="margin-left:300px">
+<input type="text" ng-model="task.name" style="background-color:black;color:white;font-size:40px;width:40%">
+<button ng-click="addtask()">Add</button>&nbsp;
+<button ng-click="updatetask()">Update</button>&nbsp;<button ng-click="clearfield()">Clear</button>
+</div>
+
+<ul>
+<li id="list" ng-repeat="task in todolist">
+{{task.name}}
+<button ng-click="deletetask(task._id)">Delete</button>&nbsp;&nbsp;<button ng-click="edittask(task._id)">Edit</button>
+</tr>
+</table>
+
+</div>
+
+
+</body>
+</html>
