@@ -1,21 +1,21 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
+app.use(express.static(__dirname));
 
-mongoose.connect("mongodb://localhost/test");
+mongoose.connect("mongodb://localhost/todolist");
 
 var TodoSchema = new mongoose.Schema ({
- name : {type: String, required: true}
+ name : {type: String, required: true},
+ status: {type: Boolean, default: false}
  });
 
 var TodoModel = mongoose.model('todolist',TodoSchema);
 
 app.get('/',function(req,res){
 
-res.sendFile('C:\\Users\\Rohit\\Desktop\\New folder\\files\\todo.html');  //Use \\merge.html in place of \\todo.html while testing because browsers block access to local resources 
-})
+res.sendFile(__dirname+ '/todo.html');
+});
 
 app.get('/todolist', function (req, res){
     TodoModel.find(function(err,tasks){
@@ -33,8 +33,8 @@ app.post('/todolist', function (req, res) {
 
 app.delete('/todolist/:id', function (req, res) {
   
- TodoModel.remove({_id:req.params.id}, function (err) {
-     res.send('');
+ TodoModel.remove({_id:req.params.id}, function (err, task) {
+     res.json(task);
  });
 });
 
@@ -57,4 +57,4 @@ app.put('/todolist/:id', function (req, res) {
 });
 
 app.listen(3000);
-console.log("Server running on port 3000");
+console.log("localhost running on port 3000");

@@ -1,0 +1,17 @@
+{
+  "name": "node-todolist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Welcome to node-todolist\"",
+    "start": "node server.js"
+  },
+  
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongoose": "^4.9.7"
+  }
+}

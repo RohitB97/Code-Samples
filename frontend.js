@@ -1,9 +1,12 @@
-var App = angular.module('App',[]);
+// No view in M-V-C
+
+var App = angular.module('TodoList',[]);
+
 App.controller('Ctrl',['$scope','$http',function($scope,$http) {
          
     var reset = function(){
       $http.get('/todolist').success(function(response){
-        $scope.todolist=response;
+        $scope.todolists=response;
         $scope.task="";
         });
      };

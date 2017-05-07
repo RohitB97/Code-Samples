@@ -1,50 +1,53 @@
 <!DOCTYPE html>
-<html ng-app="App">
+<html ng-app="TodoList">
 <head>
+ <title>Node | TodoList</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-<script src="frontend.js"></script>
+ <!-- Importing all JS files -->
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script src="frontend.js"></script>
 
-<style>
-#list   
-{ margin-left:320px;
-  font-size: 40px;
-  font-family:verdana;
-}
-button     
-{ color:yellow;background-color:red;text-align:center;cursor:pointer;
-  -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-  font-size:40px;
-  padding: 14px 32px;
-}
-button:hover
-{ background-color:peachpuff;
-  color:tomato;
-}
-</style>
+ <!-- Importing all CSS files --> 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
-<body style="background-color:cyan;">
+<body>
 
-<div ng-controller="Ctrl">
+ <div ng-controller="Ctrl">
 
-<h1 style="text-align:center;font-family:verdana;">To-Do LiSt</h1>
+ <h1 style="text-align:center;font-family:verdana;">To-Do LiSt</h1>
 
-<div style="margin-left:300px">
-<input type="text" ng-model="task.name" style="background-color:black;color:white;font-size:40px;width:40%">
-<button ng-click="addtask()">Add</button>&nbsp;
-<button ng-click="updatetask()">Update</button>&nbsp;<button ng-click="clearfield()">Clear</button>
-</div>
+ <div class="container">
+  <form >
+   <div class="form-group">
+    <input class="form-control" type="text" ng-model="task.name">
+   </div>
 
-<ul>
-<li id="list" ng-repeat="task in todolist">
-{{task.name}}
-<button ng-click="deletetask(task._id)">Delete</button>&nbsp;&nbsp;<button ng-click="edittask(task._id)">Edit</button>
-</tr>
-</table>
+    <button class="btn btn-success" ng-click="addtask()">Add</button>&nbsp;
+    <button class="btn btn-primary" ng-click="updatetask()">Update</button>&nbsp;
+    <button class="btn btn-danger" ng-click="clearfield()">Clear</button> 
+  </form><br><br> 
 
-</div>
+ <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="task in todolists">
+        <td>{{task.name}}</td>
+        <td><button class="btn btn-danger" ng-click="deletetask(task._id)">Delete</button></td>
+        <td><button class="btn btn-primary" ng-click="edittask(task._id)">Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+ </div>
 
 
 </body>
