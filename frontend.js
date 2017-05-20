@@ -2,11 +2,11 @@
 
 var App = angular.module('TodoList',[]);
 
-App.controller('Ctrl',['$scope','$http',function($scope,$http) {
+App.controller('Ctrl', function($scope,$http) {
          
     var reset = function(){
-      $http.get('/todolist').success(function(response){
-        $scope.todolists=response;
+      $http.get('/todolist').then(function(response){
+        $scope.todolists=response.data;
         $scope.task="";
         });
      };
@@ -14,25 +14,23 @@ App.controller('Ctrl',['$scope','$http',function($scope,$http) {
   reset();
 
 $scope.addtask = function() {
-  $http.post('/todolist', $scope.task).success(function(response) {
+  $http.post('/todolist', $scope.task).then(function(response) {
        reset();
     });
  };
 
 $scope.deletetask = function(id) {
-  $http.delete('/todolist/'+ id).success(function(response){
+  $http.delete('/todolist/'+ id).then(function(response){
       reset();
       });
    };
  
-$scope.edittask = function(id) {
-   $http.get('/todolist/'+ id).success(function(response){
-       $scope.task=response;
-     });
+$scope.edittask = function(task) {
+      $scope.task = task;
    };
 
 $scope.updatetask = function(){
-   $http.put('/todolist/'+$scope.task._id, $scope.task).success(function(response){
+   $http.put('/todolist/'+$scope.task._id, $scope.task).then(function(response){
        reset();
     });
  };
@@ -41,7 +39,7 @@ $scope.clearfield = function(){
    $scope.task="";
 }
 
-}]);
+});
 
 
                    

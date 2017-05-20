@@ -42,7 +42,7 @@
       <tr ng-repeat="task in todolists">
         <td>{{task.name}}</td>
         <td><button class="btn btn-danger" ng-click="deletetask(task._id)">Delete</button></td>
-        <td><button class="btn btn-primary" ng-click="edittask(task._id)">Edit</button></td>
+        <td><button class="btn btn-primary" ng-click="edittask(task)">Edit</button></td>
       </tr>
     </tbody>
   </table>
